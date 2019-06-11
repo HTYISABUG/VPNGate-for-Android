@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">VPNGate</string>
+    <string name="main_title_text">VPNGate</string>
+    <string name="main_connect_text">Connect</string>
 </resources>

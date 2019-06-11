@@ -1,6 +1,11 @@
 package com.example.vpngate;
 
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
@@ -17,8 +22,16 @@ class Crawler {
 
     private ArrayList<ServerInfo> mServerList;
 
-    public Crawler() {
+    private Spinner mSpinner;
+    private Button mConnect;
+    private ProgressBar mProgressBar;
+
+    public Crawler(Spinner spinner, Button connect, ProgressBar progressBar) {
         mServerList = new ArrayList<>();
+
+        mSpinner = spinner;
+        mConnect = connect;
+        mProgressBar = progressBar;
 
         refresh();
     }
@@ -26,8 +39,15 @@ class Crawler {
     private class CrawlerAsyncTask extends AsyncTask<Void, Void, Void> {
 
         static final String src = "http://www.vpngate.net/api/iphone/";
-
         static final int timeoutMillis = 30 * 1000;
+
+        @Override
+        protected void onPreExecute() {
+            mSpinner.setEnabled(false);
+            mConnect.setVisibility(View.GONE);
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
+
         @Override
         protected Void doInBackground(Void... voids) {
 
@@ -52,14 +72,25 @@ class Crawler {
             return null;
         }
 
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            mSpinner.setAdapter(new ArrayAdapter<>(
+                    mSpinner.getContext(),
+                    R.layout.support_simple_spinner_dropdown_item,
+                    ServerInfo.countryList()
+            ));
 
+            mSpinner.setEnabled(true);
+            mConnect.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.GONE);
+        }
     }
 
     public void refresh() {
         new CrawlerAsyncTask().execute();
     }
 
-    public ArrayList<ServerInfo> getServerList() {
+    public ArrayList<ServerInfo> serverList() {
         return mServerList;
     }
 }

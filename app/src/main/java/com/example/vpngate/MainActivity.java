@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     profile = File.createTempFile("profile", ".ovpn", profileDir);
-                    FileOutputStream out = openFileOutput(profile.getName(), MODE_PRIVATE);
+                    FileOutputStream out = new FileOutputStream(profile);
 
                     out.write(info.config().getBytes());
                     out.close();

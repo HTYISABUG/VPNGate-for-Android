@@ -6,31 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Spinner
+        android:id="@+id/country"
+        android:layout_width="250dp"
+        android:layout_height="?attr/dropdownListPreferredItemHeight"
+        android:layout_margin="5dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:background="@android:color/transparent"
+        android:paddingRight="7dp"
         android:layout_marginBottom="32dp"
-        android:text="@string/main_title_text"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/country"
+        android:stateListAnimator="@drawable/spinner_select"
+        android:dropDownWidth="250dp"
+        android:popupBackground="@android:color/white"
+        android:popupElevation="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/country"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="@+id/title"
-        app:layout_constraintStart_toStartOf="@+id/title"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <LinearLayout
         android:id="@+id/linearLayout"

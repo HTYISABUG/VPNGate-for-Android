@@ -74,11 +74,14 @@ class Crawler {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            mSpinner.setAdapter(new ArrayAdapter<>(
+            ArrayAdapter adapter = new ArrayAdapter<String>(
                     mSpinner.getContext(),
-                    R.layout.support_simple_spinner_dropdown_item,
+                    R.layout.spinner_item_selected,
                     ServerInfo.countryList()
-            ));
+            );
+            adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+
+            mSpinner.setAdapter(adapter);
 
             mSpinner.setEnabled(true);
             mConnect.setVisibility(View.VISIBLE);

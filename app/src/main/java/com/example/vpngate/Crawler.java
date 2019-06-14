@@ -32,8 +32,6 @@ class Crawler {
         mSpinner = spinner;
         mConnect = connect;
         mProgressBar = progressBar;
-
-        refresh();
     }
 
     private class CrawlerAsyncTask extends AsyncTask<Void, Void, Void> {
@@ -50,7 +48,6 @@ class Crawler {
 
         @Override
         protected Void doInBackground(Void... voids) {
-
             try {
                 URL url = new URL(src);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -96,4 +93,5 @@ class Crawler {
     public ArrayList<ServerInfo> serverList() {
         return mServerList;
     }
+
 }

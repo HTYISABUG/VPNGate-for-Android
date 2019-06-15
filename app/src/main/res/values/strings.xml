@@ -4,4 +4,5 @@
     <string name="main_connect_text">Connect</string>
     <string name="no_network">No network available</string>
     <string name="none_description">NONE</string>
+    <string name="refresh_button_text">Refresh</string>
 </resources>

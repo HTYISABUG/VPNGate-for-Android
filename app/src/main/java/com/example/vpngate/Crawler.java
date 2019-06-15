@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
@@ -22,13 +23,15 @@ class Crawler {
 
     private ArrayList<ServerInfo> mServerList;
 
+    private LinearLayout mWrapper;
     private Spinner mSpinner;
     private Button mConnect;
     private ProgressBar mProgressBar;
 
-    public Crawler(Spinner spinner, Button connect, ProgressBar progressBar) {
+    public Crawler(LinearLayout wrapper, Spinner spinner, Button connect, ProgressBar progressBar) {
         mServerList = new ArrayList<>();
 
+        mWrapper = wrapper;
         mSpinner = spinner;
         mConnect = connect;
         mProgressBar = progressBar;
@@ -41,6 +44,7 @@ class Crawler {
 
         @Override
         protected void onPreExecute() {
+            mWrapper.setVisibility(View.GONE);
             mSpinner.setEnabled(false);
             mConnect.setVisibility(View.GONE);
             mProgressBar.setVisibility(View.VISIBLE);
@@ -80,6 +84,7 @@ class Crawler {
 
             mSpinner.setAdapter(adapter);
 
+            mWrapper.setVisibility(View.VISIBLE);
             mSpinner.setEnabled(true);
             mConnect.setVisibility(View.VISIBLE);
             mProgressBar.setVisibility(View.GONE);

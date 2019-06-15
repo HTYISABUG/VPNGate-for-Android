@@ -6,45 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Spinner
-        android:id="@+id/country"
-        android:layout_width="250dp"
-        android:layout_height="?attr/dropdownListPreferredItemHeight"
-        android:layout_margin="5dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@android:color/transparent"
-        android:paddingRight="7dp"
-        android:layout_marginBottom="32dp"
-        android:stateListAnimator="@drawable/spinner_select"
-        android:dropDownWidth="250dp"
-        android:popupBackground="@android:color/white"
-        android:popupElevation="3dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_quarter_circle" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="8dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/country"
-        app:layout_constraintStart_toStartOf="@+id/country"
-        app:layout_constraintTop_toBottomOf="@+id/country">
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutWrapper"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayoutWrapper"
+        app:layout_constraintStart_toStartOf="@+id/linearLayoutWrapper"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/connect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/circle_btn"
             android:onClick="onConnectClicked"
             android:text="@string/main_connect_text"
+            android:textSize="18dp"
             android:visibility="gone"
             tools:layout_editor_absoluteX="161dp"
             tools:layout_editor_absoluteY="269dp" />
@@ -57,6 +45,51 @@
             android:visibility="visible"
             tools:layout_editor_absoluteX="167dp"
             tools:layout_editor_absoluteY="638dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingVertical="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+
+        <TextView
+            android:id="@+id/spinner_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Switch location to"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+        <Spinner
+            android:id="@+id/country"
+            android:spinnerMode="dialog"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/transparent"
+            android:padding="5dp"
+            android:dropDownWidth="250dp"
+            android:paddingRight="7dp"
+            android:stateListAnimator="@drawable/spinner_select" />
+
+        <Button
+            android:id="@+id/refresh"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_rectangle"
+            android:onClick="onRefreshClicked"
+            android:text="@string/refresh_button_text"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

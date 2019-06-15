@@ -3,6 +3,7 @@ package com.example.vpngate;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -24,8 +27,11 @@ public class MainActivity extends AppCompatActivity {
     private static final String vpnClassName    = "net.openvpn.unified.MainActivity";
     private static final String vpnStoreLink    = "https://play.google.com/store/apps/details?id=net.openvpn.openvpn";
 
+    private static final float IMAGE_SCREEN_WIDTH_AUTO = 0.73f;
+
     private Crawler mCrawler;
 
+    private LinearLayout mWrapper;
     private Spinner mSpinner;
 
     @Override
@@ -48,14 +54,23 @@ public class MainActivity extends AppCompatActivity {
             finishAffinity();
         }
 
+        // set background quarter circle width and height
+        ImageView background_image = (ImageView) findViewById(R.id.background);
+        int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+        int imageViewSize = (int) ((float) screenWidth * IMAGE_SCREEN_WIDTH_AUTO);
+        background_image.getLayoutParams().width = imageViewSize;
+        background_image.getLayoutParams().height = imageViewSize;
+
+        mWrapper = findViewById(R.id.linearLayoutWrapper);
         mSpinner = findViewById(R.id.country);
 
         Button mConnect = findViewById(R.id.connect);
         ProgressBar mProgressBar = findViewById(R.id.progressBar);
 
-        mCrawler = new Crawler(mSpinner, mConnect, mProgressBar);
 
+        mCrawler = new Crawler(mWrapper, mSpinner, mConnect, mProgressBar);
         onRefreshClicked(null);
+
     }
 
     public void onConnectClicked(View view) {
